@@ -1,8 +1,12 @@
 'use client';
 
-import { useMemo } from 'react';
+import {useEffect, useMemo} from 'react';
 import { useInitData, useLaunchParams, type User } from '@telegram-apps/sdk-react';
-import { List, Placeholder } from '@telegram-apps/telegram-ui';
+import {List, Placeholder} from '@telegram-apps/telegram-ui';
+import {
+  on,
+  postEvent,
+} from '@telegram-apps/bridge';
 
 import { DisplayData, type DisplayDataRow } from '@/components/DisplayData/DisplayData';
 
@@ -24,6 +28,22 @@ function getUserRows(user: User): DisplayDataRow[] {
 export default function InitDataPage() {
   const initDataRaw = useLaunchParams().initDataRaw;
   const initData = useInitData();
+
+  useEffect(() => {
+    const off = on('back_button_pressed', () => {
+      // Quay lại trang trước
+      window.history.back();
+      console.log('back button pressed')
+
+      // Ẩn nút Back sau khi quay lại
+      postEvent('web_app_setup_back_button', { is_visible: false });
+    });
+
+    // Cleanup listener khi component bị unmount
+    return () => {
+      off();
+    };
+  }, []);
 
   const initDataRows = useMemo<DisplayDataRow[] | undefined>(() => {
     if (!initData || !initDataRaw) {
@@ -76,6 +96,8 @@ export default function InitDataPage() {
     ];
   }, [initData]);
 
+  const firstName = initData?.user?.firstName || 'Unknown User';
+
   if (!initDataRows) {
     return (
       <Placeholder
@@ -91,11 +113,14 @@ export default function InitDataPage() {
     );
   }
   return (
-    <List>
-      <DisplayData header={'Init Data'} rows={initDataRows}/>
-      {userRows && <DisplayData header={'User'} rows={userRows}/>}
-      {receiverRows && <DisplayData header={'Receiver'} rows={receiverRows}/>}
-      {chatRows && <DisplayData header={'Chat'} rows={chatRows}/>}
-    </List>
+
+        <List>
+          <DisplayData header={'Init Data'} rows={initDataRows}/>
+          {userRows && <DisplayData header={'User'} rows={userRows}/>}
+          {receiverRows && <DisplayData header={'Receiver'} rows={receiverRows}/>}
+          {chatRows && <DisplayData header={'Chat'} rows={chatRows}/>}
+        </List>
+
+
   );
 };

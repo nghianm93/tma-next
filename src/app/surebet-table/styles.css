@@ -1,0 +1,213 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-3xl {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.mb-6 {
+    margin-bottom: 24px;
+}
+
+.mb-4 {
+    margin-bottom: 16px;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.gap-4 {
+    gap: 16px;
+}
+
+.p-2 {
+    padding: 8px;
+}
+
+.border {
+    border: 1px solid #ddd;
+}
+
+.rounded {
+    border-radius: 4px;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.table-auto {
+    width: auto;
+}
+
+.border-collapse {
+    border-collapse: collapse;
+}
+
+.bg-gray-100 {
+    background-color: #f3f4f6;
+}
+
+.hover\:bg-gray-50:hover {
+    background-color: #f9fafb;
+}
+
+.hover\:bg-blue-600:hover {
+    background-color: #2563eb;
+}
+
+.bg-green-100 {
+    background-color: #d1fae5;
+}
+
+.bg-blue-500 {
+    background-color: #3b82f6;
+}
+
+.text-white {
+    color: white;
+}
+
+.transition-colors {
+    transition: background-color 0.2s;
+}
+
+.table th,
+.table td {
+    padding: 8px;
+    text-align: left;
+}
+
+.table th {
+    cursor: pointer;
+}
+
+.text-red-500 {
+    color: #f87171;
+}
+
+.text-gray-500 {
+    color: #6b7280;
+}
+
+.text-gray-400 {
+    color: #9ca3af;
+}
+
+.text-4xl {
+    font-size: 2.25rem;
+}
+
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+/* Định nghĩa giao diện chung cho điện thoại */
+@media (max-width: 768px) {
+    .container {
+        padding: 8px;
+    }
+
+    .text-3xl {
+        font-size: 1.5rem;
+    }
+
+    .mb-6 {
+        margin-bottom: 12px;
+    }
+
+    .mb-4 {
+        margin-bottom: 8px;
+    }
+
+    .table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .flex {
+        flex-direction: column;
+    }
+
+    .items-center {
+        align-items: flex-start;
+    }
+
+    .justify-between {
+        justify-content: flex-start;
+    }
+
+    /* Các nút lọc ở phần trên cũng cần được xếp chồng lên nhau */
+    .filter-section {
+        display: block;
+    }
+
+    .filter-section input,
+    .filter-section select {
+        margin-bottom: 8px;
+        width: 100%;
+    }
+
+    /* Thu nhỏ kích thước chữ cho bảng */
+    .table th, .table td {
+        padding: 4px;
+        font-size: 0.9rem;
+    }
+
+    /* Làm cho bảng cuộn được */
+    .table-auto {
+        width: 100%;
+    }
+
+    .table th, .table td {
+        white-space: nowrap; /* Giữ cho bảng không bị cắt ngắn văn bản */
+    }
+
+    /* Ẩn các cột odds1, bookmaker2, odds2 trên điện thoại */
+    .column-odds1, .column-bookmaker2, .column-odds2 {
+        display: none;
+    }
+
+    /* Điều chỉnh kích thước cột cho phù hợp với di động */
+    .table th, .table td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    /* Giảm kích thước của bảng */
+    .table {
+        width: 100%;
+    }
+}
+
+
